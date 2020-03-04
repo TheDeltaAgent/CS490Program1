@@ -20,7 +20,7 @@ public class ProducerThread implements Runnable
         Integer priorityToGive = rand.nextInt(10);
         Integer processIDToGive = m_procID + 1;
         float randFloat = rand.nextFloat();
-        randFloat = randFloat * (float).4 + (float)1.0;
+        randFloat = randFloat * (float).4 + (float)0.1;
         Long timesliceToGive = (long) randFloat;
 
         ProcessNode procNode = new ProcessNode(processIDToGive, priorityToGive, timesliceToGive);
@@ -41,10 +41,15 @@ public class ProducerThread implements Runnable
                 produceProcess();
             }
             try {
-                Thread.sleep(15000);
+                //Sleep for a random interval between 5 to 10 seconds
+                Random rand = new Random();
+                float randFloat = rand.nextFloat();
+                randFloat = randFloat * (float)5 + (float)5.0;
+                Thread.sleep((long)randFloat);
             } catch (InterruptedException e) {
                 System.out.println("Exception caught:" + e);
             }
         }
+        System.out.println("Producer has completed its tasks");
     }
 }
