@@ -2,7 +2,7 @@ package program1;
 
 public class ProcessNode
 {
-    public static Integer m_processID;
+    public Integer m_processID;
     public Integer m_priority;
     public Long m_timeSlice;         //amount of time the consumer thread sleeps (in milliseconds)
 

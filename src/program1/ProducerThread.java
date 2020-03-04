@@ -18,13 +18,13 @@ public class ProducerThread implements Runnable
     {
         Random rand = new Random();
         Integer priorityToGive = rand.nextInt(10);
-        Integer processIDToGive = m_procID + 1;
+        m_procID = m_procID + 1;
         float randFloat = rand.nextFloat();
         randFloat = randFloat * (float).4 + (float)0.1;
         randFloat = randFloat * 1000;
         Long timesliceToGive = (long) randFloat;
 
-        ProcessNode procNode = new ProcessNode(processIDToGive, priorityToGive, timesliceToGive);
+        ProcessNode procNode = new ProcessNode(m_procID, priorityToGive, timesliceToGive);
 
         //Add to the heap
         //Critical Region
