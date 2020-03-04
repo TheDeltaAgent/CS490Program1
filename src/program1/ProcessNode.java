@@ -3,7 +3,7 @@ package program1;
 public class ProcessNode
 {
     private static Integer m_processID;
-    private Integer m_priority;
+    public Integer m_priority;
     private Long m_timeSlice;         //amount of time the consumer thread sleeps (in milliseconds)
 
     //Overloaded Constructor
