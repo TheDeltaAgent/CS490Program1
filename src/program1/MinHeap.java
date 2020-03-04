@@ -25,7 +25,8 @@ public class MinHeap<E extends Comparable<E>>
         int swapIndex;
 
         //Check to see if children exist
-        if(rightChildIndex < m_heap.size() ) {
+        if(rightChildIndex < m_heap.size() )
+        {
             if (m_heap.get(leftChildIndex).m_priority <= m_heap.get(rightChildIndex).m_priority)
             {
                 swapIndex = leftChildIndex;
@@ -39,7 +40,7 @@ public class MinHeap<E extends Comparable<E>>
             }
         }
         //Check if only left child exists
-        else if(m_heap.get(leftChildIndex).m_priority < m_heap.get(heapTop).m_priority)
+        else if(leftChildIndex < m_heap.size())
             if (m_heap.get(heapTop).m_priority <= m_heap.get(leftChildIndex).m_priority)
             {
                 swapIndex = leftChildIndex;
