@@ -15,10 +15,20 @@ public class MainProgram
         Thread consumerThread1 = new Thread(new ConsumerThread(heap, 1));
         Thread consumerThread2 = new Thread(new ConsumerThread(heap, 2));
 
-        producerThread.run();
-        consumerThread1.run();
+        //HeapSort Test Code
+        //Add a few nodes to heap
+        ProcessNode node1 = new ProcessNode(1, 1, (long)0);
+        ProcessNode node2 = new ProcessNode(1, 2, (long)0);
+        ProcessNode node3 = new ProcessNode(1, 3, (long)0);
 
+        heap.addProcessToHeap(node1);
+        heap.addProcessToHeap(node2);
+        heap.addProcessToHeap(node3);
+
+        heap.removeProcessFromHeap();
     }
+
+
 
 
     //Thread thread = new Thread(new ConsumerThread());

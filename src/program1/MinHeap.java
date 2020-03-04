@@ -20,8 +20,8 @@ public class MinHeap<E extends Comparable<E>>
 
     private void heapSort(int heapTop) //top is min value
     {
-        int leftChildIndex = (heapTop + 1) * 2;
-        int rightChildIndex = (heapTop * 2) + 1;
+        int leftChildIndex = (heapTop * 2) + 1;
+        int rightChildIndex = (heapTop + 1) * 2;
         int swapIndex;
 
         //Check to see if children exist
