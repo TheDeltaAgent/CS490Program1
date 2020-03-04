@@ -15,5 +15,21 @@ public class MinHeap
 
     }
 
+    public void addProcessToHeap(ProcessNode n)
+    {
+        synchronized (lock)
+        {
+            //add Process to the arrayList and perform a HeapSort
+        }
+    }
+
+    public void removeProcessFromHeap(ProcessNode n)
+    {
+        synchronized (lock)
+        {
+            //remove process from the arrayList and perform a HeapSort
+        }
+
+    }
 
 }

@@ -21,6 +21,7 @@ public class ProducerThread implements Runnable
 
         //Add to the heap
         //Critical Region
+        heap.addProcessToHeap(procNode);
     }
 
     public void run()
