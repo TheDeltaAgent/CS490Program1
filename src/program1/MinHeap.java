@@ -18,13 +18,13 @@ public class MinHeap<E extends Comparable<E>>
         heap = new ArrayList<ProcessNode>();
     }
 
-    private void heapSort()
+    private void heapSort(int index)
     {
 
     }
 
     /**
-     * This function adds Process to the arrayList and performs a HeapSort
+     * This function adds Process to the arrayList and sorts it
      * @param n The process node to be added
      */
     public void addProcessToHeap(ProcessNode n)
@@ -46,13 +46,21 @@ public class MinHeap<E extends Comparable<E>>
 
 
 
-    public void removeProcessFromHeap(ProcessNode n)
+    public ProcessNode removeProcessFromHeap()
     {
         synchronized (lock)
         {
             //remove process from the arrayList and perform a HeapSort
+            if (heap.size() <= 0)
+                return null;
+            else {
+                ProcessNode topProcess = heap.get(0);
+                heap.set(0, heap.get(heap.size()-1));  // Move last to position 0
+                heap.remove(heap.size()-1);
+                heapSort(0);
+                return topProcess;
+            }
         }
-
     }
 
     /**

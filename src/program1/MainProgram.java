@@ -8,6 +8,14 @@ package program1;
  */
 public class MainProgram
 {
+    public static void main(String[] args)
+    {
+        MinHeap heap = new MinHeap();
+        ConsumerThread consumerThread1 = new ConsumerThread(heap);
+        ProducerThread producerThread = new ProducerThread(heap);
+
+
+    }
 
 
     //Thread thread = new Thread(new ConsumerThread());
