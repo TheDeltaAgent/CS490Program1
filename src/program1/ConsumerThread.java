@@ -17,7 +17,7 @@ public class ConsumerThread implements Runnable
 
     public void run()
     {
-        while(interrupted == false)
+        while(!interrupted)
         {
             //Get node
             ProcessNode node = heapToUse.removeProcessFromHeap();

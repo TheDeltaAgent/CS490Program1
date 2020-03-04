@@ -58,6 +58,7 @@ public class MinHeap<E extends Comparable<E>>
      */
     public void addProcessToHeap(ProcessNode n)
     {
+        System.out.println("Adding process");
         synchronized (lock)
         {
             m_heap.add(n);                // Put new value at the end

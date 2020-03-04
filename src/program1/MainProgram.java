@@ -15,6 +15,8 @@ public class MainProgram
         Thread consumerThread1 = new Thread(new ConsumerThread(heap, 1));
         Thread consumerThread2 = new Thread(new ConsumerThread(heap, 2));
 
+        producerThread.run();
+        consumerThread1.run();
 
     }
 
