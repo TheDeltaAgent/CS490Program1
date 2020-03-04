@@ -2,9 +2,9 @@ package program1;
 
 public class ProcessNode
 {
-    private static Integer m_processID;
+    public static Integer m_processID;
     public Integer m_priority;
-    private Long m_timeSlice;         //amount of time the consumer thread sleeps (in milliseconds)
+    public Long m_timeSlice;         //amount of time the consumer thread sleeps (in milliseconds)
 
     //Overloaded Constructor
     public ProcessNode(Integer procID, Integer priorityLvl, Long time)

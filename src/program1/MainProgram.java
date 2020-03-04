@@ -11,8 +11,9 @@ public class MainProgram
     public static void main(String[] args)
     {
         MinHeap heap = new MinHeap();
-        ConsumerThread consumerThread1 = new ConsumerThread(heap);
-        ProducerThread producerThread = new ProducerThread(heap);
+        Thread producerThread = new Thread(new ProducerThread(heap));
+        Thread consumerThread1 = new Thread(new ConsumerThread(heap, 1));
+        Thread consumerThread2 = new Thread(new ConsumerThread(heap, 2));
 
 
     }
