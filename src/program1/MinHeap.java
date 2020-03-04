@@ -8,18 +8,47 @@ public class MinHeap<E extends Comparable<E>>
     //Modified tree structure : parent is (currentIndex -1 / 2)
     // Watch out for correct truncation
     private final Object lock = new Object();
-    private ArrayList<ProcessNode> heap;
+    private ArrayList<ProcessNode> m_heap;
 
     /**
      * Constructor
      */
     public MinHeap()
     {
-        heap = new ArrayList<ProcessNode>();
+        m_heap = new ArrayList<ProcessNode>();
     }
 
-    private void heapSort(int index)
+    private void heapSort(int heapTop) //top is min value
     {
+        int leftChildIndex = (heapTop + 1) * 2;
+        int rightChildIndex = (heapTop * 2) + 1;
+        int swapIndex;
+
+        //Check to see if children exist
+        if(rightChildIndex < m_heap.size() ) {
+            if (m_heap.get(leftChildIndex).m_priority <= m_heap.get(rightChildIndex).m_priority)
+            {
+                swapIndex = leftChildIndex;
+                swap(m_heap, swapIndex, heapTop);
+                heapSort(swapIndex);
+            }
+            else {
+                swapIndex = rightChildIndex;
+                swap(m_heap, swapIndex, heapTop);
+                heapSort(swapIndex);
+            }
+        }
+        //Check if only left child exists
+        else if(m_heap.get(leftChildIndex).m_priority < m_heap.get(heapTop).m_priority)
+            if (m_heap.get(heapTop).m_priority <= m_heap.get(leftChildIndex).m_priority)
+            {
+                swapIndex = leftChildIndex;
+                swap(m_heap, swapIndex, heapTop);
+                heapSort(swapIndex);
+            }
+
+
+
 
     }
 
@@ -31,13 +60,13 @@ public class MinHeap<E extends Comparable<E>>
     {
         synchronized (lock)
         {
-            heap.add(n);                // Put new value at the end
-            int loc = heap.size()-1;    // and gets its location
+            m_heap.add(n);                // Put new value at the end
+            int loc = m_heap.size()-1;    // and gets its location
 
             //Swap with parent until parent's priority not larger
-            while (loc > 0 && heap.get(loc).m_priority < heap.get(parent(loc)).m_priority)
+            while (loc > 0 && m_heap.get(loc).m_priority < m_heap.get(parent(loc)).m_priority)
             {
-                swap(heap, loc, parent(loc));
+                swap(m_heap, loc, parent(loc));
                 loc = parent(loc);
             }
         }
@@ -51,12 +80,12 @@ public class MinHeap<E extends Comparable<E>>
         synchronized (lock)
         {
             //remove process from the arrayList and perform a HeapSort
-            if (heap.size() <= 0)
+            if (m_heap.size() <= 0)
                 return null;
             else {
-                ProcessNode topProcess = heap.get(0);
-                heap.set(0, heap.get(heap.size()-1));  // Move last to position 0
-                heap.remove(heap.size()-1);
+                ProcessNode topProcess = m_heap.get(0);
+                m_heap.set(0, m_heap.get(m_heap.size()-1));  // Move last to position 0
+                m_heap.remove(m_heap.size()-1);
                 heapSort(0);
                 return topProcess;
             }
