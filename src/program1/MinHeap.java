@@ -8,7 +8,7 @@ public class MinHeap<E extends Comparable<E>>
     //Modified tree structure : parent is (currentIndex -1 / 2)
     // Watch out for correct truncation
     private final Object lock = new Object();
-    private ArrayList<ProcessNode> m_heap;
+    public ArrayList<ProcessNode> m_heap;
 
     /**
      * Constructor

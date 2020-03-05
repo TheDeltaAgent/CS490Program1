@@ -14,6 +14,7 @@ public class MainProgram
         Thread producerThread = new Thread(new ProducerThread(heap));
         Thread consumerThread1 = new Thread(new ConsumerThread(heap, 1));
         Thread consumerThread2 = new Thread(new ConsumerThread(heap, 2));
+        Thread watcherThread = new Thread(new WatcherThread(heap));
 
         //HeapSort Test Code
         //Add a few nodes to heap
@@ -31,6 +32,29 @@ public class MainProgram
         producerThread.start();
         consumerThread1.start();
         consumerThread2.start();
+        try
+        {
+            producerThread.join();
+        }
+        catch (InterruptedException e)
+        {
+            System.out.println("Exception caught at producer's join: "+ e);
+        }
+        watcherThread.start();
+        try
+        {
+            watcherThread.join();
+        }
+        catch (InterruptedException e)
+        {
+            System.out.println("Exception caught at watcher's join: "+ e);
+        }
+        System.out.println("Sending 1st interrupt");
+
+        consumerThread1.interrupt();
+        System.out.println("Sending 2nd interrupt");
+
+        consumerThread2.interrupt();
     }
 
 

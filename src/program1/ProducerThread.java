@@ -19,8 +19,9 @@ public class ProducerThread implements Runnable
         Random rand = new Random();
         Integer priorityToGive = rand.nextInt(10);
         m_procID = m_procID + 1;
+        //Create timeslice that is between 10 and 15 seconds
         float randFloat = rand.nextFloat();
-        randFloat = randFloat * (float).4 + (float)0.1;
+        randFloat = randFloat * (float)5 + (float)10;
         randFloat = randFloat * 1000;
         Long timesliceToGive = (long) randFloat;
 
@@ -53,5 +54,6 @@ public class ProducerThread implements Runnable
             }
         }
         System.out.println("Producer has completed its tasks");
+        return;
     }
 }
