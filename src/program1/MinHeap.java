@@ -86,8 +86,8 @@ public class MinHeap<E extends Comparable<E>>
                 return null;
             else {
                 ProcessNode topProcess = m_heap.get(0);
-                m_heap.set(0, m_heap.get(m_heap.size()-1));  // Move last to position 0
-                m_heap.remove(m_heap.size()-1);
+                m_heap.set(0, m_heap.get(m_heap.size()-1));         // Move last to position 0
+                m_heap.remove(m_heap.size()-1);              // Removes copy at the bottom of the heap
                 heapSort(0);
                 return topProcess;
             }

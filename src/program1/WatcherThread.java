@@ -19,7 +19,7 @@ public class WatcherThread implements Runnable
         {
             try
             {
-                System.out.println("Watcher has detected that" + heapReference.m_heap.size()+" processes in the heap. Sleeping...");
+                System.out.println("Watcher has detected that " + heapReference.m_heap.size()+" processes remain in the heap. Sleeping...");
                 Thread.sleep(5000);
                 processesRemaining = heapReference.m_heap.size();
             }
