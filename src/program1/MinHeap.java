@@ -21,22 +21,26 @@ public class MinHeap<E extends Comparable<E>>
     private void heapSort(int heapTop) //top is min value
     {
         int leftChildIndex = (heapTop * 2) + 1;
-        int rightChildIndex = (heapTop + 1) * 2;
+        int rightChildIndex = (heapTop * 2) + 2;
         int swapIndex;
 
-        //Check to see if children exist
+        //Check to see if 2 children exist
         if(rightChildIndex < m_heap.size() )
         {
+            //Check if left child is higher priority (lowest number) than right child.
             if (m_heap.get(leftChildIndex).m_priority <= m_heap.get(rightChildIndex).m_priority)
             {
                 swapIndex = leftChildIndex;
                 swap(m_heap, swapIndex, heapTop);
                 heapSort(swapIndex);
+
             }
+            //Right child is higher priority (Lower number)
             else {
                 swapIndex = rightChildIndex;
                 swap(m_heap, swapIndex, heapTop);
                 heapSort(swapIndex);
+
             }
         }
         //Check if only left child exists
@@ -46,11 +50,22 @@ public class MinHeap<E extends Comparable<E>>
                 swapIndex = leftChildIndex;
                 swap(m_heap, swapIndex, heapTop);
                 heapSort(swapIndex);
+
             }
 
 
 
 
+    }
+
+    private void checkHeap()
+    {
+        //Check that all parents are smaller than children.
+        for(int i = 0; i < m_heap.size(); i++)
+        {
+            System.out.print(m_heap.get(i).m_priority);
+        }
+        System.out.println("\n");
     }
 
     /**
@@ -89,6 +104,7 @@ public class MinHeap<E extends Comparable<E>>
                 m_heap.set(0, m_heap.get(m_heap.size()-1));         // Move last to position 0
                 m_heap.remove(m_heap.size()-1);              // Removes copy at the bottom of the heap
                 heapSort(0);
+                checkHeap();
                 return topProcess;
             }
         }
