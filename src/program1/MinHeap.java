@@ -2,7 +2,7 @@ package program1;
 
 import java.util.ArrayList;
 
-public class MinHeap<E extends Comparable<E>>
+public class MinHeap <E extends Comparable<E>>
 {
     //Need to use ArrayList
     //Modified tree structure : parent is (currentIndex -1 / 2)
@@ -18,7 +18,7 @@ public class MinHeap<E extends Comparable<E>>
         m_heap = new ArrayList<ProcessNode>();
     }
 
-    private void heapSort(int heapTop) //top is min value
+    private void heapify(int heapTop) //top is min value
     {
         int leftChildIndex = (heapTop * 2) + 1;
         int rightChildIndex = (heapTop * 2) + 2;
@@ -27,31 +27,39 @@ public class MinHeap<E extends Comparable<E>>
         //Check to see if 2 children exist
         if(rightChildIndex < m_heap.size() )
         {
-            //Check if left child is higher priority (lowest number) than right child.
+            //Find highest priority child (lowest number)
             if (m_heap.get(leftChildIndex).m_priority <= m_heap.get(rightChildIndex).m_priority)
-            {
                 swapIndex = leftChildIndex;
-                swap(m_heap, swapIndex, heapTop);
-                heapSort(swapIndex);
 
-            }
             //Right child is higher priority (Lower number)
-            else {
+            else
                 swapIndex = rightChildIndex;
-                swap(m_heap, swapIndex, heapTop);
-                heapSort(swapIndex);
 
+            //Compare highest p child with parent
+            if (m_heap.get(swapIndex).m_priority < m_heap.get(heapTop).m_priority)
+            {
+                //If true then swap and sort.
+                swap(m_heap, swapIndex, heapTop);
+                heapify(swapIndex);
+
+                //Else, do nothing.
             }
+
         }
         //Check if only left child exists
         else if(leftChildIndex < m_heap.size())
-            if (m_heap.get(heapTop).m_priority <= m_heap.get(leftChildIndex).m_priority)
+        {
+            //Check if Parent is higher priority (lowest number) than left child.
+            if (m_heap.get(leftChildIndex).m_priority <= m_heap.get(heapTop).m_priority)
             {
                 swapIndex = leftChildIndex;
                 swap(m_heap, swapIndex, heapTop);
-                heapSort(swapIndex);
+                heapify(swapIndex);
 
             }
+        }
+
+        //Else Process is a leaf node and heapify is finished.
 
 
 
@@ -103,7 +111,7 @@ public class MinHeap<E extends Comparable<E>>
                 ProcessNode topProcess = m_heap.get(0);
                 m_heap.set(0, m_heap.get(m_heap.size()-1));         // Move last to position 0
                 m_heap.remove(m_heap.size()-1);              // Removes copy at the bottom of the heap
-                heapSort(0);
+                heapify(0);
                 checkHeap();
                 return topProcess;
             }
