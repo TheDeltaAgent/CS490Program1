@@ -13,9 +13,11 @@ public class MainProgram
     {
         //Create all the threads
         MinHeap heap = new MinHeap();
+        ConsumerThread c1 = new ConsumerThread(heap, 1);
+        ConsumerThread c2 = new ConsumerThread(heap, 2);
         Thread producerThread = new Thread(new ProducerThread(heap));
-        Thread consumerThread1 = new Thread(new ConsumerThread(heap, 1));
-        Thread consumerThread2 = new Thread(new ConsumerThread(heap, 2));
+        Thread consumerThread1 = new Thread(c1);
+        Thread consumerThread2 = new Thread(c2);
         Thread watcherThread = new Thread(new WatcherThread(heap));
 
         //start the producer and consumer threads
@@ -48,6 +50,11 @@ public class MainProgram
         consumerThread1.interrupt();
         System.out.println("Sending 2nd interrupt");
         consumerThread2.interrupt();
+
+        //Hard check to ensure consumers break their while loops
+        c1.setInterrupt();
+        c2.setInterrupt();
+
     }
 
 }

@@ -20,6 +20,14 @@ public class ConsumerThread implements Runnable
         ID = consumerID;
     }
 
+    /**
+     * Function that hard sets the interrupted variable so the loop will break regardless of a thrown exception
+     */
+    public void setInterrupt()
+    {
+        interrupted = true;
+    }
+
 
     public void run()
     {
@@ -42,7 +50,7 @@ public class ConsumerThread implements Runnable
                 catch (InterruptedException e)
                 {
                     System.out.println("No more nodes to consume " + ID);
-                    interrupted = true;
+                    //interrupted = true;
                 }
             }
         }

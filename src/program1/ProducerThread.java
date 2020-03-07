@@ -43,7 +43,7 @@ public class ProducerThread implements Runnable
         for(int i = 1; i<=3; i++)
         {
             System.out.println("Producer adding nodes");
-            for(int j = 0; j < 5; j++)
+            for(int j = 0; j < 3; j++)
             {
                 produceProcess();
             }
