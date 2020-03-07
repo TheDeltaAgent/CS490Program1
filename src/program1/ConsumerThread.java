@@ -1,5 +1,11 @@
 package program1;
 
+/**
+ * Thread that accesses the heap to take away processes and sleep for their timeslice duration.
+ *
+ * @author Ethan McNabb
+ * @author Bradley Bowen
+ */
 public class ConsumerThread implements Runnable
 {
     private MinHeap heapToUse;
@@ -26,14 +32,16 @@ public class ConsumerThread implements Runnable
             {
                 try
                 {
+                    //sleep
                     Thread.sleep(node.m_timeSlice);
-                    System.out.println("Consumer " + ID + "has finished Process: " + node.m_processID
+                    //print statement of when thread has finished sleeping
+                    System.out.println("Consumer " + ID + " has finished Process: " + node.m_processID
                             + " priority: " + node.m_priority + " at time: " + System.currentTimeMillis()
                     );
                 }
                 catch (InterruptedException e)
                 {
-                    System.out.println("No more nodes to consume" + ID);
+                    System.out.println("No more nodes to consume " + ID);
                     interrupted = true;
                 }
             }

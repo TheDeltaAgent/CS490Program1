@@ -2,10 +2,14 @@ package program1;
 
 import java.util.Random;
 
+/**
+ * Thread that accesses the heap to add processes to it.
+ *
+ * @author Ethan McNabb
+ * @author Bradley Bowen
+ */
 public class ProducerThread implements Runnable
 {
-    //private final Object lock = new Object();
-    private Integer m_runsRemaining = 3;
     private Integer m_procID = 0;
     private MinHeap heapReference;
 
@@ -28,7 +32,7 @@ public class ProducerThread implements Runnable
         ProcessNode procNode = new ProcessNode(m_procID, priorityToGive, timesliceToGive);
 
         //Add to the heap
-        //Critical Region
+        //Accesses Critical Region
         heapReference.addProcessToHeap(procNode);
     }
 

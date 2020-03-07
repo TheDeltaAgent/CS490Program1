@@ -12,7 +12,6 @@ public class MinHeap
 {
     //Need to use ArrayList
     //Modified tree structure : parent is (currentIndex -1 / 2)
-    // Watch out for correct truncation
     private final Object lock = new Object();
     public ArrayList<ProcessNode> m_heap;
 
@@ -21,6 +20,7 @@ public class MinHeap
      */
     public MinHeap()
     {
+        //Initialize array list
         m_heap = new ArrayList<ProcessNode>();
     }
 
@@ -74,9 +74,6 @@ public class MinHeap
 
         //Else Process is a leaf node and heapify is finished.
 
-
-
-
     }
 
     /**
@@ -100,7 +97,7 @@ public class MinHeap
      */
     public void addProcessToHeap(ProcessNode n)
     {
-        System.out.println("Adding process");
+        //System.out.println("Adding process");
         synchronized (lock)
         {
             m_heap.add(n);                // Put new value at the end
@@ -133,7 +130,7 @@ public class MinHeap
                 m_heap.set(0, m_heap.get(m_heap.size()-1));         // Move last to position 0 to prepare heapify function.
                 m_heap.remove(m_heap.size()-1);              // Deletes copy of last process at the bottom of the heap
                 heapify(0);
-                debugPrintHeap();                                       // Prints heap to check for correctness.
+                //debugPrintHeap();                                       // Prints heap to check for correctness.
                 return topProcess;
             }
         }

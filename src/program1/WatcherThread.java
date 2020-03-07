@@ -1,5 +1,11 @@
 package program1;
 
+/**
+ * Thread that periodically checks the heap to see if processes still remain inside it.
+ *
+ * @author Ethan McNabb
+ * @author Bradley Bowen
+ */
 public class WatcherThread implements Runnable
 {
     private MinHeap heapReference;
