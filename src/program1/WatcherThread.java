@@ -19,6 +19,7 @@ public class WatcherThread implements Runnable
      */
     public void run()
     {
+        System.out.println("Starting watcher thread");
         processesRemaining = heapReference.m_heap.size();
         //Check the heap to see if there are processes in it until there are none.
         while(processesRemaining != 0)

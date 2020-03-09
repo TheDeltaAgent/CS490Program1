@@ -50,7 +50,6 @@ public class ConsumerThread implements Runnable
                 catch (InterruptedException e)
                 {
                     System.out.println("No more nodes to consume " + ID);
-                    //interrupted = true;
                 }
             }
         }
