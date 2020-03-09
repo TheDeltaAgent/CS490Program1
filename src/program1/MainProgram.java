@@ -6,6 +6,9 @@ package program1;
  *  @Author: Ethan McNabb
  *  @Author: Bradley Bowen
  *  This program simulates the creation and execution of prioritized processes.
+ *
+ *  Testing Notes: This program was developed and run using Java Version 13.0.2 and IntelliJ Idea IDE Version 2019.1.3
+ *  Community Edition
  */
 public class MainProgram
 {
